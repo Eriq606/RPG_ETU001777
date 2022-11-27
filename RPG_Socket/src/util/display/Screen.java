@@ -1,9 +1,10 @@
 package util.display;
 
-import util.listener.Remote;
-
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Screen extends JFrame {
-//    public Screen(Remote )
+    public Screen(){
+        setSize(1280, 720);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
 }

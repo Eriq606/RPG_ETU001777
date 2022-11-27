@@ -4,15 +4,22 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server extends ServerSocket {
-    int port;
+    int nbClients;
     public Server(int port) throws Exception{
         super(port);
-        this.port=port;
     }
-    public void process() throws Exception{
-        Client meClient=new Client("localhost", port);
-        while(true){
+
+    public int getNbClients() {
+        return nbClients;
+    }
+
+    public void setNbClients(int nbClients) {
+        this.nbClients = nbClients;
+    }
+    public void waiting() throws Exception{
+        while(nbClients<1){
             Socket client=accept();
+            new ClientThread(client, nbClients++).start();
         }
     }
 }

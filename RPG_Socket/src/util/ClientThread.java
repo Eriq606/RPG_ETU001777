@@ -1,10 +1,18 @@
 package util;
-public class ClientThread extends Thread{
-    Client client;
-    public ClientThread(Client client) throws Exception{
-        this.client=client;
-    }
-    public void run(){
 
+import java.net.Socket;
+
+public class ClientThread extends Thread{
+    Socket client;
+    public ClientThread(Socket client, int nb){
+        setClient(client);
+    }
+
+    public Socket getClient() {
+        return client;
+    }
+
+    public void setClient(Socket client) {
+        this.client = client;
     }
 }
