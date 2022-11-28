@@ -38,7 +38,7 @@ public class Card {
     }
 
     public static Vector<Card> getAllCards() throws Exception{
-        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG/src/datas/cards.txt"));
+        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG_Socket/src/datas/cards.txt"));
         Vector<Card> cartes=new Vector<Card>();
         try{
             Vector<Attack> attaques=Attack.getAllAttacks();

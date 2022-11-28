@@ -23,7 +23,6 @@ public class IPlisten implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String ipTyped=ip.getChamp().getText();
         System.out.println(ipTyped);
-        ip.getMenu().setiPhost(ipTyped);
         ip.dispose();
     }
 }

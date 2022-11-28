@@ -46,7 +46,7 @@ public class Character {
     }
 
     public static Vector<Character> getAllCharacters() throws Exception{
-        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG/src/datas/character.txt"));
+        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG_Socket/src/datas/character.txt"));
         Vector<Character> chars=new Vector<Character>();
         try{
             Vector<Card> allCards=Card.getAllCards();

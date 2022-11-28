@@ -38,7 +38,7 @@ public class Attack {
         this.degats = degats;
     }
     public static Vector<Attack> getAllAttacks() throws Exception{
-        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG/src/datas/attacks.txt"));
+        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG_Socket/src/datas/attacks.txt"));
         Vector<Attack> attacks=new Vector<Attack>();
         try{
             while(scan.hasNextLine()){

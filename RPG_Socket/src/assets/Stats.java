@@ -38,7 +38,7 @@ public class Stats {
         this.idperso = idperso;
     }
     public static Vector<Stats> getAllStatss() throws Exception{
-        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG/src/datas/stats.txt"));
+        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG_Socket/src/datas/stats.txt"));
         Vector<Stats> attacks=new Vector<Stats>();
         try{
             while(scan.hasNextLine()){

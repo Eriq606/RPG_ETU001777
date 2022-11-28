@@ -1,6 +1,7 @@
 package util;
 
 import assets.Character;
+import util.display.Loading;
 import util.display.MenuPanel;
 import util.display.Screen;
 import util.listen.Manette;
@@ -79,13 +80,18 @@ public class Game {
         screen.setVisible(true);
     }
     public void launchNetwork() throws Exception{
-        match=new Match();
+        match=new Match(chars);
         int mode=menu.getCurrMode();
+        match.setPerso1(menu.getCurrPerso());
+        screen.add(new Loading(match));
+        screen.setVisible(true);
         if(mode==0){
-            server=new Server(9999);
+            server=new Server(9999, match);
             server.waiting();
-        }else if(mode==1)
-            client=new Client(menu.getiPhost(), 9999);
+        }else if(mode==1){
+            client=new Client(null, 9999, match);
+            client.process();
+        }
     }
     public void launch() throws Exception{
         launchMenu();
