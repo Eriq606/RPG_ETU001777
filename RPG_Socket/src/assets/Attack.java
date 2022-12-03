@@ -1,25 +1,20 @@
 package assets;
 
-import java.io.File;
-import java.util.Scanner;
+import util.BddObj;
+
 import java.util.Vector;
 
-public class Attack {
-    int id;
+public class Attack extends BddObj {
+    int idAttack;
     String nom;
-    double degats;
-    public Attack(int id, String nom, double degats){
-        setId(id);
-        setNom(nom);
-        setDegats(degats);
+    int degats;
+
+    public int getIdAttack() {
+        return idAttack;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAttack(int idAttack) {
+        this.idAttack = idAttack;
     }
 
     public String getNom() {
@@ -30,32 +25,21 @@ public class Attack {
         this.nom = nom;
     }
 
-    public double getDegats() {
+    public int getDegats() {
         return degats;
     }
 
-    public void setDegats(double degats) {
+    public void setDegats(int degats) {
         this.degats = degats;
     }
-    public static Vector<Attack> getAllAttacks() throws Exception{
-        Scanner scan=new Scanner(new File("H:/Eriq_RohWeltall/Prog/Java/IntelliJ/RPG_Socket/src/datas/attacks.txt"));
-        Vector<Attack> attacks=new Vector<Attack>();
-        try{
-            while(scan.hasNextLine()){
-                String[] atk=scan.nextLine().split("::");
-                Attack attack=new Attack(Integer.parseInt(atk[0]), atk[1], Double.parseDouble(atk[2]));
-                attacks.add(attack);
-            }
-            return attacks;
-        }finally{
-            scan.close();
-        }
+    public Attack[] getAllAttacks() throws Exception{
+        Vector all=selectAll();
+        Attack[] allAttacks=new Attack[all.size()];
+        for(int i=0; i<all.size(); i++)
+            allAttacks[i]=(Attack)all.get(i);
+        return allAttacks;
     }
-    public static Attack getAttackById(Vector<Attack> liste, int id){
-        for(int i=0; i<liste.size(); i++){
-            if(liste.get(i).getId()==id)
-                return liste.get(i);
-        }
-        return liste.get(0);
+    public Attack getAttackByID(Attack[] liste) throws Exception{
+        return (Attack)getElementByID(liste, 0);
     }
 }
