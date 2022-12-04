@@ -12,6 +12,7 @@ public class MenuScreen extends JPanel {
     JPanel choosing;
     JPanel chosen;
     CardLayout cardLayout;
+    CardLayout choosingLayout;
     Session session;
     Personnage[] allPersos;
     Vector<Vector<Card>> cardsUsed;
@@ -22,9 +23,18 @@ public class MenuScreen extends JPanel {
         choosing=new JPanel();
         chosen=new JPanel();
         cardLayout=new CardLayout();
+        choosingLayout=new CardLayout();
         setLayout(cardLayout);
         prepareAssets();
         prepare();
+    }
+
+    public JPanel getChoosing() {
+        return choosing;
+    }
+
+    public void setChoosing(JPanel choosing) {
+        this.choosing = choosing;
     }
 
     public CardLayout getCardLayout() {
@@ -41,6 +51,14 @@ public class MenuScreen extends JPanel {
 
     public void setCurrentCharacter(int currentCharacter) {
         this.currentCharacter = currentCharacter;
+    }
+
+    public CardLayout getChoosingLayout() {
+        return choosingLayout;
+    }
+
+    public void setChoosingLayout(CardLayout choosingLayout) {
+        this.choosingLayout = choosingLayout;
     }
 
     void prepareAssets() throws Exception{
@@ -72,50 +90,53 @@ public class MenuScreen extends JPanel {
     }
 
     void prepareChoosing(){
-        JPanel choose=new JPanel();
-        Box full=new Box(1);
-        JPanel upper=new JPanel();
-        Box illustration=new Box(1);
-        Box cards=new Box(1);
-        JPanel image=new JPanel();
-        JLabel nom=new JLabel(allPersos[currentCharacter].getNom());
+        choosing.setLayout(choosingLayout);
+        for(int j=0; j< allPersos.length; j++) {
+            JPanel choose=new JPanel();
+            Box full = new Box(1);
+            JPanel upper = new JPanel();
+            Box illustration = new Box(1);
+            Box cards = new Box(1);
+            JPanel image = new JPanel();
+            JLabel nom = new JLabel(allPersos[j].getNom());
 
-        for(int i=0; i<cardsUsed.get(currentCharacter).size(); i++) {
-            JPanel card = new JPanel();
-            Box illustrCard=new Box(1);
-            JPanel illustre=new JPanel();
-            JLabel nomCard=new JLabel(cardsUsed.get(currentCharacter).get(i).getNom());
-            illustrCard.add(illustre);
-            illustrCard.add(nomCard);
-            JPanel listeAtks = new JPanel();
-            GridLayout gridAtk = new GridLayout(2, 2);
-            listeAtks.setLayout(gridAtk);
-            for(int k=0; k<attacksPerPerso.get(currentCharacter).get(i).size(); k++){
-                JLabel nomAtk=new JLabel(attacksPerPerso.get(currentCharacter).get(i).get(k).getNom());
-                listeAtks.add(nomAtk);
+            for (int i = 0; i < cardsUsed.get(j).size(); i++) {
+                JPanel card = new JPanel();
+                Box illustrCard = new Box(1);
+                JPanel illustre = new JPanel();
+                JLabel nomCard = new JLabel(cardsUsed.get(j).get(i).getNom());
+                illustrCard.add(illustre);
+                illustrCard.add(nomCard);
+                JPanel listeAtks = new JPanel();
+                GridLayout gridAtk = new GridLayout(2, 2);
+                listeAtks.setLayout(gridAtk);
+                for (int k = 0; k < attacksPerPerso.get(j).get(i).size(); k++) {
+                    JLabel nomAtk = new JLabel(attacksPerPerso.get(j).get(i).get(k).getNom());
+                    listeAtks.add(nomAtk);
+                }
+                card.add(illustrCard);
+                card.add(listeAtks);
+                cards.add(card);
             }
-            card.add(illustrCard);
-            card.add(listeAtks);
-            cards.add(card);
+
+            JButton confirm = new JButton("Confirmer");
+            confirm.addActionListener(new ChooseListener(session));
+
+            illustration.add(image);
+            illustration.add(nom);
+            upper.add(illustration);
+            upper.add(cards);
+            full.add(upper);
+            full.add(confirm);
+            choose.add(full);
+            choosing.add(choose);
         }
-
-        JButton confirm=new JButton("Confirmer");
-        confirm.addActionListener(new ChooseListener(session));
-
-        illustration.add(image);
-        illustration.add(nom);
-        upper.add(illustration);
-        upper.add(cards);
-        full.add(upper);
-        full.add(confirm);
-        choose.add(full);
-        choosing=choose;
     }
     void prepareChosen(){
         JPanel hasChosen=new JPanel();
         Box illustration=new Box(1);
         JPanel image=new JPanel();
-        JLabel nom=new JLabel("Personnage");
+        JLabel nom=new JLabel(allPersos[currentCharacter].getNom());
         illustration.add(image);
         illustration.add(nom);
         hasChosen.add(illustration);
@@ -123,12 +144,10 @@ public class MenuScreen extends JPanel {
     }
     void prepare(){
         prepareChoosing();
-        prepareChosen();
         add(choosing);
-        add(chosen);
     }
-    public void reload(){
-        prepareChoosing();
+    public void prepareChose(){
         prepareChosen();
+        add(chosen);
     }
 }

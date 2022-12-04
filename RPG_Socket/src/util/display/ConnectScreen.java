@@ -1,7 +1,4 @@
 package util.display;
-
-import util.Network;
-import util.Screen;
 import util.Session;
 import util.listen.ClientListener;
 import util.listen.ServerListener;

@@ -39,4 +39,7 @@ public class Personnage extends BddObj {
             allPersonnages[i]=(Personnage)all.get(i);
         return allPersonnages;
     }
+    public Personnage getPersonnageByID(Personnage[] liste) throws Exception{
+        return (Personnage)getElementByID(liste);
+    }
 }

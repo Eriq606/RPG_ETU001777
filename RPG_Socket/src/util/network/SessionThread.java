@@ -1,6 +1,4 @@
 package util.network;
-
-import util.Match;
 import util.Session;
 
 public class SessionThread extends Thread{

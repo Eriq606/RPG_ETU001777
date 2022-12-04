@@ -12,6 +12,8 @@ public class ChooseListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        session.getScreen().getMenuScreen().prepareChose();
         session.getScreen().getMenuScreen().getCardLayout().next(session.getScreen().getMenuScreen());
+        session.getMatch().setPerso1(session.getRessources().getPersonnages()[session.getScreen().getMenuScreen().getCurrentCharacter()].getIdPersonnage());
     }
 }

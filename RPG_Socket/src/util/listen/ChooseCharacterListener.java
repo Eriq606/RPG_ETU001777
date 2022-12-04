@@ -1,10 +1,6 @@
 package util.listen;
-
-import util.Screen;
 import util.Session;
 import util.display.MenuScreen;
-
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -24,17 +20,18 @@ public class ChooseCharacterListener implements KeyListener {
         int nbOfPerso=session.getRessources().getPersonnages().length;
         switch(e.getKeyCode()){
             case 37:
-                if(menu.getCurrentCharacter()>0)
-                    menu.setCurrentCharacter(menu.getCurrentCharacter()-1);
+                menu.getChoosingLayout().previous(menu.getChoosing());
+                menu.setCurrentCharacter(menu.getCurrentCharacter()-1);
+                if(menu.getCurrentCharacter()<0)
+                    menu.setCurrentCharacter(nbOfPerso-1);
                 break;
             case 39:
-                if(menu.getCurrentCharacter()<nbOfPerso-1)
-                    menu.setCurrentCharacter(menu.getCurrentCharacter()+1);
+                menu.getChoosingLayout().next(menu.getChoosing());
+                menu.setCurrentCharacter(menu.getCurrentCharacter()+1);
+                if(menu.getCurrentCharacter()==nbOfPerso)
+                    menu.setCurrentCharacter(0);
                 break;
         }
-        System.out.println(menu.getCurrentCharacter());
-        menu.reload();
-        session.getScreen().setVisible(true);
     }
 
     @Override

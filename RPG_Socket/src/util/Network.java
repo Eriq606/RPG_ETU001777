@@ -1,5 +1,6 @@
 package util;
 
+import util.network.ClientThread;
 import util.network.ServerThread;
 
 import javax.swing.*;
@@ -36,12 +37,13 @@ public class Network {
     public void demarrerServeur() throws Exception{
         serveur=new ServerSocket(port);
         Socket autreJoueur = serveur.accept();
-        new ServerThread(autreJoueur, this).start();
+        new ServerThread(autreJoueur, session).start();
         session.setMode(3);
     }
     public void demarrerClient() throws Exception{
         try {
             client = new Socket(IP, port);
+            new ServerThread(client, session).start();
             session.setMode(3);
         }catch(Exception e){
             session.setMode(4);
