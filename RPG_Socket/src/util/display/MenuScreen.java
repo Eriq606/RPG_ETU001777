@@ -4,8 +4,11 @@ import assets.*;
 import util.Session;
 import util.listen.ChooseListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Vector;
 
 public class MenuScreen extends JPanel {
@@ -89,7 +92,7 @@ public class MenuScreen extends JPanel {
         }
     }
 
-    void prepareChoosing(){
+    void prepareChoosing() throws Exception{
         choosing.setLayout(choosingLayout);
         for(int j=0; j< allPersos.length; j++) {
             JPanel choose=new JPanel();
@@ -99,7 +102,6 @@ public class MenuScreen extends JPanel {
             Box cards = new Box(1);
             JPanel image = new JPanel();
             JLabel nom = new JLabel(allPersos[j].getNom());
-
             for (int i = 0; i < cardsUsed.get(j).size(); i++) {
                 JPanel card = new JPanel();
                 Box illustrCard = new Box(1);
@@ -142,7 +144,7 @@ public class MenuScreen extends JPanel {
         hasChosen.add(illustration);
         chosen=hasChosen;
     }
-    void prepare(){
+    void prepare() throws Exception{
         prepareChoosing();
         add(choosing);
     }

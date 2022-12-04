@@ -16,6 +16,7 @@ public class SessionThread extends Thread{
                     session.getNetwork().demarrerClient();
                     break;
                 case 3:
+                case 5:
                     session.getScreen().getCardFull().next(session.getScreen().getFullUI());
                     session.setMode(0);
                     break;

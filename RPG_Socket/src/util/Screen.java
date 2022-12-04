@@ -1,4 +1,5 @@
 package util;
+import util.display.BattleScreen;
 import util.display.ConnectScreen;
 import util.display.MenuScreen;
 import util.listen.ChooseCharacterListener;
@@ -12,6 +13,7 @@ public class Screen extends JFrame {
     CardLayout cardFull;
     ConnectScreen connectScreen;
     MenuScreen menuScreen;
+    BattleScreen battleScreen;
     public Screen(Session ses) throws Exception{
         session=ses;
         fullUI=new JPanel();
@@ -21,6 +23,8 @@ public class Screen extends JFrame {
         fullUI.add(connectScreen);
         menuScreen=new MenuScreen(session);
         fullUI.add(menuScreen);
+        battleScreen=new BattleScreen();
+        fullUI.add(battleScreen);
         add(fullUI);
         addKeyListener(new ChooseCharacterListener(session));
         setFocusable(true);

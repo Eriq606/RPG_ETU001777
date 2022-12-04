@@ -5,7 +5,7 @@ public class Session {
     Network network;
     Screen screen;
     Ressources ressources;
-    int mode;               //      1: Serveur          2: Client       3: Connecté         4: Echec
+    int mode;               //      1: Serveur          2: Client       3: Connecté         4: Echec        5: Debut partie
     Match match;
     public Session() throws Exception{
         network=new Network(9999, this);

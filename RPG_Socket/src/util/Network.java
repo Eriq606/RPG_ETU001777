@@ -1,6 +1,4 @@
 package util;
-
-import util.network.ClientThread;
 import util.network.ServerThread;
 
 import javax.swing.*;
