@@ -40,6 +40,6 @@ public class Card extends BddObj {
         return allCards;
     }
     public Card getCardByID(Card[] liste) throws Exception{
-        return (Card)getElementByID(liste, 0);
+        return (Card)getElementByID(liste);
     }
 }

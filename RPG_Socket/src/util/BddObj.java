@@ -46,11 +46,11 @@ public class BddObj {
             scan.close();
         }
     }
-    public Object getElementByID(Object[] liste, int index) throws Exception{
+    public Object getElementByID(Object[] liste) throws Exception{
         Field[] fields= getClass().getDeclaredFields();
         for(int i=0; i<liste.length; i++){
-            Object saValeur=getClass().getMethod("get"+majStart(fields[index].getName())).invoke(liste[i]);
-            Object maValeur=getClass().getMethod("get"+majStart(fields[index].getName())).invoke(this);
+            Object saValeur=getClass().getMethod("get"+majStart(fields[0].getName())).invoke(liste[i]);
+            Object maValeur=getClass().getMethod("get"+majStart(fields[0].getName())).invoke(this);
             if(saValeur.equals(maValeur))
                 return liste[i];
         }

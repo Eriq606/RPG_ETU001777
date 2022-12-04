@@ -40,6 +40,6 @@ public class Attack extends BddObj {
         return allAttacks;
     }
     public Attack getAttackByID(Attack[] liste) throws Exception{
-        return (Attack)getElementByID(liste, 0);
+        return (Attack)getElementByID(liste);
     }
 }

@@ -6,11 +6,12 @@ public class Session {
     Screen screen;
     Ressources ressources;
     int mode;               //      1: Serveur          2: Client       3: Connecté         4: Echec
+    Match match;
     public Session() throws Exception{
         network=new Network(9999, this);
-        screen=new Screen(this);
         ressources=new Ressources();
-        new SessionThread(this).start();
+        screen=new Screen(this);
+        match=new Match();
     }
 
     public Network getNetwork() {
@@ -35,5 +36,26 @@ public class Session {
 
     public void setMode(int mode) {
         this.mode = mode;
+    }
+
+    public Ressources getRessources() {
+        return ressources;
+    }
+
+    public void setRessources(Ressources ressources) {
+        this.ressources = ressources;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
+
+    public void start(){
+        new SessionThread(this).start();
+        screen.setVisible(true);
     }
 }

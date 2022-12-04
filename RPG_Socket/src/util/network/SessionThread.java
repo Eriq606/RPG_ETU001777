@@ -1,5 +1,6 @@
 package util.network;
 
+import util.Match;
 import util.Session;
 
 public class SessionThread extends Thread{
@@ -7,7 +8,6 @@ public class SessionThread extends Thread{
     public SessionThread(Session ses){
         session=ses;
     }
-    void vide(){}
     public void process() throws Exception{
         while(true){
             switch(session.getMode()){

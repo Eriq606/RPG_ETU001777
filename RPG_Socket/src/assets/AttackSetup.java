@@ -2,6 +2,7 @@ package assets;
 
 import util.BddObj;
 
+import java.lang.reflect.Field;
 import java.util.Vector;
 
 public class AttackSetup extends BddObj {
@@ -56,5 +57,22 @@ public class AttackSetup extends BddObj {
         for(int i=0; i<all.size(); i++)
             allAttackSetups[i]=(AttackSetup)all.get(i);
         return allAttackSetups;
+    }
+    public AttackSetup getAttackSetupByID(AttackSetup[] liste) throws Exception{
+        return (AttackSetup)getElementByID(liste);
+    }
+    public Vector<Attack> getAttacksSet(Attack[] liste) throws Exception{
+        Vector<Attack> listeAtk=new Vector<Attack>();
+        Field[] champs= getClass().getDeclaredFields();
+        for(int i=1; i<5; i++){
+            Attack attack=new Attack();
+            int idAtk=Integer.parseInt(getClass().getMethod("get"+BddObj.majStart(champs[i].getName())).invoke(this).toString());
+            if(idAtk==0)
+                continue;
+            attack.setIdAttack(idAtk);
+            attack=attack.getAttackByID(liste);
+            listeAtk.add(attack);
+        }
+        return listeAtk;
     }
 }

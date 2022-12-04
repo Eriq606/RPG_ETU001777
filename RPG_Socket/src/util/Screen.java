@@ -1,6 +1,7 @@
 package util;
 import util.display.ConnectScreen;
 import util.display.MenuScreen;
+import util.listen.ChooseCharacterListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ public class Screen extends JFrame {
     CardLayout cardFull;
     ConnectScreen connectScreen;
     MenuScreen menuScreen;
-    public Screen(Session ses){
+    public Screen(Session ses) throws Exception{
         session=ses;
         fullUI=new JPanel();
         cardFull=new CardLayout();
@@ -21,11 +22,11 @@ public class Screen extends JFrame {
         menuScreen=new MenuScreen(session);
         fullUI.add(menuScreen);
         add(fullUI);
+        addKeyListener(new ChooseCharacterListener(session));
         setFocusable(true);
         setSize(800, 600);
         setDefaultCloseOperation(3);
         setResizable(false);
-        setVisible(true);
     }
 
     public JPanel getFullUI() {
