@@ -1,7 +1,4 @@
 package util.network;
-
-import assets.Personnage;
-import util.Network;
 import util.Session;
 
 import java.io.BufferedReader;
@@ -51,7 +48,6 @@ public class ServerThread extends Thread{
     public void run(){
         try{
             processPreparation();
-            System.out.println(session.getMatch().getPerso2());
             session.setMode(5);
         }catch(Exception e){
             e.printStackTrace();

@@ -3,6 +3,7 @@ import util.display.BattleScreen;
 import util.display.ConnectScreen;
 import util.display.MenuScreen;
 import util.listen.ChooseCharacterListener;
+import util.listen.MouseListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,10 +24,11 @@ public class Screen extends JFrame {
         fullUI.add(connectScreen);
         menuScreen=new MenuScreen(session);
         fullUI.add(menuScreen);
-        battleScreen=new BattleScreen();
+        battleScreen=new BattleScreen(session);
         fullUI.add(battleScreen);
         add(fullUI);
         addKeyListener(new ChooseCharacterListener(session));
+        addMouseListener(new MouseListener());
         setFocusable(true);
         setSize(800, 600);
         setDefaultCloseOperation(3);

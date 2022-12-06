@@ -8,6 +8,7 @@ public class Personnage extends BddObj {
     int idPersonnage;
     String nom;
     int idCardSetup;
+    int idStatistiques;
 
     public int getIdPersonnage() {
         return idPersonnage;
@@ -32,6 +33,15 @@ public class Personnage extends BddObj {
     public void setIdCardSetup(int idCardSetup) {
         this.idCardSetup = idCardSetup;
     }
+
+    public int getIdStatistiques() {
+        return idStatistiques;
+    }
+
+    public void setIdStatistiques(int idStatistiques) {
+        this.idStatistiques = idStatistiques;
+    }
+
     public Personnage[] getAllPersonnages() throws Exception{
         Vector all=selectAll();
         Personnage[] allPersonnages=new Personnage[all.size()];

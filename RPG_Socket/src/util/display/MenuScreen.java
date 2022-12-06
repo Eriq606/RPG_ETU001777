@@ -18,6 +18,7 @@ public class MenuScreen extends JPanel {
     CardLayout choosingLayout;
     Session session;
     Personnage[] allPersos;
+    Vector<Statistiques> statsPerPerso;
     Vector<Vector<Card>> cardsUsed;
     Vector<Vector<Vector<Attack>>> attacksPerPerso;
     int currentCharacter;
@@ -66,13 +67,19 @@ public class MenuScreen extends JPanel {
 
     void prepareAssets() throws Exception{
         allPersos=session.getRessources().getPersonnages();
+        statsPerPerso=new Vector<>();
         cardsUsed=new Vector<>();
         attacksPerPerso=new Vector<>();
+        Statistiques[] allStats=session.getRessources().getStatistiques();
         Card[] cards=session.getRessources().getCards();
         CardSetup[] allCardSetups=session.getRessources().getCardSetups();
         Attack[] attacks=session.getRessources().getAttacks();
         AttackSetup[] allAttackSetups=session.getRessources().getAttackSetups();
         for(int i=0; i< allPersos.length; i++){
+            Statistiques stat=new Statistiques();
+            stat.setIdStatistiques(allPersos[i].getIdStatistiques());
+            stat=stat.getStatistiquesByID(allStats);
+            statsPerPerso.add(stat);
             CardSetup cardSetup=new CardSetup();
             cardSetup.setIdCardSetup(allPersos[i].getIdCardSetup());
             cardSetup=cardSetup.getCardSetupByID(allCardSetups);
@@ -102,6 +109,7 @@ public class MenuScreen extends JPanel {
             Box cards = new Box(1);
             JPanel image = new JPanel();
             JLabel nom = new JLabel(allPersos[j].getNom());
+            JLabel hp=new JLabel(String.valueOf(statsPerPerso.get(j).getHp()));
             for (int i = 0; i < cardsUsed.get(j).size(); i++) {
                 JPanel card = new JPanel();
                 Box illustrCard = new Box(1);
@@ -126,6 +134,7 @@ public class MenuScreen extends JPanel {
 
             illustration.add(image);
             illustration.add(nom);
+            illustration.add(hp);
             upper.add(illustration);
             upper.add(cards);
             full.add(upper);
