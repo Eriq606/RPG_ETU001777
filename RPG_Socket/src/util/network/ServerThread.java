@@ -18,7 +18,7 @@ public class ServerThread extends Thread{
         fromClient=new BufferedReader(new InputStreamReader(client.getInputStream()));
         writeToClient=new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
     }
-    void sendPerso(String message) throws Exception{
+    void send(String message) throws Exception{
         writeToClient.write(message);
         writeToClient.newLine();
         writeToClient.flush();
@@ -31,17 +31,52 @@ public class ServerThread extends Thread{
             session.getMatch().setReceived(1);
         }
     }
+    void receiveAction() throws Exception{
+        String message=fromClient.readLine();
+        String[] actions=message.split("::");
+        switch(Integer.parseInt(actions[0])){
+            case 1:
+                session.getMatch().setAction2(1);
+                break;
+            case 2:
+                session.getMatch().setAction2(2);
+                session.getMatch().setMagic2(Integer.parseInt(actions[1]));
+                break;
+            case 3:
+                session.getMatch().setAction2(3);
+                break;
+        }
+        session.getMatch().setReceived(1);
+    }
     void processPreparation() throws Exception{
         while(true){
             System.out.print("");
             if(session.getMatch().getSent()==0&&session.getMatch().getPerso1()!=0){
-                sendPerso(String.valueOf(session.getMatch().getPerso1()));
+                send(String.valueOf(session.getMatch().getPerso1()));
                 session.getMatch().setSent(1);
                 receivePerso();
             }
             if(session.getMatch().getSent()==1&&session.getMatch().getReceived()==1) {
                 session.getMatch().setPhase(1);
+                session.getMatch().setSent(0);
+                session.getMatch().setReceived(0);
                 break;
+            }
+        }
+    }
+    void processMatch() throws Exception{
+        while(true){
+            System.out.print("");
+            if(session.getMatch().getSent()==0&&session.getMatch().getAction1()!=0){
+                send(String.valueOf(session.getMatch().getAction1()+"::"+session.getMatch().getMagic1()));
+                session.getMatch().setSent(1);
+                receiveAction();
+            }
+            if(session.getMatch().getSent()==1&&session.getMatch().getReceived()==1){
+                session.getMatch().setProcess(2);
+                session.getMatch().setSent(0);
+                session.getMatch().setReceived(0);
+                session.getMatch().execute();
             }
         }
     }
@@ -49,6 +84,7 @@ public class ServerThread extends Thread{
         try{
             processPreparation();
             session.setMode(5);
+            processMatch();
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -27,7 +27,6 @@ public class Screen extends JFrame {
         battleScreen=new BattleScreen(session);
         fullUI.add(battleScreen);
         add(fullUI);
-        addKeyListener(new ChooseCharacterListener(session));
         addMouseListener(new MouseListener());
         setFocusable(true);
         setSize(800, 600);
@@ -65,5 +64,13 @@ public class Screen extends JFrame {
 
     public void setMenuScreen(MenuScreen menuScreen) {
         this.menuScreen = menuScreen;
+    }
+
+    public BattleScreen getBattleScreen() {
+        return battleScreen;
+    }
+
+    public void setBattleScreen(BattleScreen battleScreen) {
+        this.battleScreen = battleScreen;
     }
 }

@@ -1,5 +1,6 @@
 package util.network;
 import util.Session;
+import util.listen.ChooseCharacterListener;
 
 public class SessionThread extends Thread{
     Session session;
@@ -16,7 +17,13 @@ public class SessionThread extends Thread{
                     session.getNetwork().demarrerClient();
                     break;
                 case 3:
+                    session.getScreen().getCardFull().next(session.getScreen().getFullUI());
+                    session.setMode(0);
+                    session.getScreen().addKeyListener(new ChooseCharacterListener(session));
+                    break;
                 case 5:
+                    session.getScreen().getBattleScreen().preparePersos();
+                    session.getScreen().getBattleScreen().prepare();
                     session.getScreen().getCardFull().next(session.getScreen().getFullUI());
                     session.setMode(0);
                     break;

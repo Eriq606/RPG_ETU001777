@@ -38,7 +38,7 @@ public class Network {
         new ServerThread(autreJoueur, session).start();
         session.setMode(3);
     }
-    public void demarrerClient() throws Exception{
+    public void demarrerClient(){
         try {
             client = new Socket(IP, port);
             new ServerThread(client, session).start();
