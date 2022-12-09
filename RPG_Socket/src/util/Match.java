@@ -10,6 +10,7 @@ public class Match {
     int process;            //      0: Choosing action      1: Waiting response     2: Executing actions
     int action1, action2;   //      1: Attack           2: Magic            3: Change card
     int magic1, magic2;
+    int vainqueur;
     public Match(Session ses){
         session=ses;
     }
@@ -92,6 +93,15 @@ public class Match {
     public void setMagic2(int magic2) {
         this.magic2 = magic2;
     }
+
+    public int getVainqueur() {
+        return vainqueur;
+    }
+
+    public void setVainqueur(int vainqueur) {
+        this.vainqueur = vainqueur;
+    }
+
     public void execute() throws Exception{
         switch(session.getMatch().getAction1()){
             case 1:
@@ -133,6 +143,17 @@ public class Match {
         action2=0;
         magic1=0;
         magic2=0;
+        process=1;
+        int mesHpRestants=session.getScreen().getBattleScreen().getCombattant1().getHpRestants();
+        int sesHpRestants=session.getScreen().getBattleScreen().getCombattant2().getHpRestants();
+        if(mesHpRestants<=0||sesHpRestants<=0){
+            if(mesHpRestants<=0&&sesHpRestants>0)
+                vainqueur=perso2;
+            else if(mesHpRestants>0&&sesHpRestants<=0)
+                vainqueur=perso1;
+            session.setMode(6);
+            return;
+        }
         for(int i=0; i<session.getScreen().getBattleScreen().getMyCards().size(); i++){
             if(i==session.getScreen().getBattleScreen().getCombattant1().getCurrentCard())
                 session.getScreen().getBattleScreen().getMyCards().get(i).setEnabled(false);

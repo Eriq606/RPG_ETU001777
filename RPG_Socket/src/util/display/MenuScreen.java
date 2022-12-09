@@ -108,6 +108,11 @@ public class MenuScreen extends JPanel {
             Box illustration = new Box(1);
             Box cards = new Box(1);
             JPanel image = new JPanel();
+            image.setSize(150, 200);
+            JLabel imageperso=new JLabel();
+            ImageIcon icon=new ImageIcon(ImageIO.read(new File("./src/datas/images/Helios.jpg")));
+            imageperso.setIcon(icon);
+            image.add(imageperso);
             JLabel nom = new JLabel(allPersos[j].getNom());
             JLabel hp=new JLabel(String.valueOf(statsPerPerso.get(j).getHp()));
             for (int i = 0; i < cardsUsed.get(j).size(); i++) {

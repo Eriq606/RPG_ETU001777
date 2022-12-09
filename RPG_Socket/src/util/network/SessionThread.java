@@ -27,6 +27,11 @@ public class SessionThread extends Thread{
                     session.getScreen().getCardFull().next(session.getScreen().getFullUI());
                     session.setMode(0);
                     break;
+                case 6:
+                    session.getScreen().getWinScreen().preparePanel();
+                    session.getScreen().getCardFull().next(session.getScreen().getFullUI());
+                    session.setMode(0);
+                    break;
                 case 4:
                     session.getScreen().getCardFull().first(session.getScreen().getFullUI());
                     session.getScreen().getConnectScreen().getCardConnection().first(session.getScreen().getConnectScreen());

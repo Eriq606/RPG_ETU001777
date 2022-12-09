@@ -2,6 +2,7 @@ package util;
 import util.display.BattleScreen;
 import util.display.ConnectScreen;
 import util.display.MenuScreen;
+import util.display.WinScreen;
 import util.listen.ChooseCharacterListener;
 import util.listen.MouseListener;
 
@@ -15,6 +16,7 @@ public class Screen extends JFrame {
     ConnectScreen connectScreen;
     MenuScreen menuScreen;
     BattleScreen battleScreen;
+    WinScreen winScreen;
     public Screen(Session ses) throws Exception{
         session=ses;
         fullUI=new JPanel();
@@ -26,6 +28,8 @@ public class Screen extends JFrame {
         fullUI.add(menuScreen);
         battleScreen=new BattleScreen(session);
         fullUI.add(battleScreen);
+        winScreen=new WinScreen(session);
+        fullUI.add(winScreen);
         add(fullUI);
         addMouseListener(new MouseListener());
         setFocusable(true);
@@ -72,5 +76,13 @@ public class Screen extends JFrame {
 
     public void setBattleScreen(BattleScreen battleScreen) {
         this.battleScreen = battleScreen;
+    }
+
+    public WinScreen getWinScreen() {
+        return winScreen;
+    }
+
+    public void setWinScreen(WinScreen winScreen) {
+        this.winScreen = winScreen;
     }
 }

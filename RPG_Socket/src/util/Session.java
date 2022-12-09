@@ -5,15 +5,13 @@ public class Session {
     Network network;
     Screen screen;
     Ressources ressources;
-    int mode;               //      1: Serveur          2: Client       3: Connecté         4: Echec        5: Debut partie
+    int mode;               //      1: Serveur          2: Client       3: Connecté         4: Echec        5: Debut partie       6: Fin de partie
     Match match;
-    int etat;               //      1: Connexion        2: Menu         3: Combat
     public Session() throws Exception{
         network=new Network(9999, this);
         ressources=new Ressources();
         match=new Match(this);
         screen=new Screen(this);
-        etat=1;
     }
 
     public Network getNetwork() {
@@ -54,14 +52,6 @@ public class Session {
 
     public void setMatch(Match match) {
         this.match = match;
-    }
-
-    public int getEtat() {
-        return etat;
-    }
-
-    public void setEtat(int etat) {
-        this.etat = etat;
     }
 
     public void start(){

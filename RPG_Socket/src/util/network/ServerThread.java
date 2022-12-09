@@ -78,6 +78,8 @@ public class ServerThread extends Thread{
                 session.getMatch().setReceived(0);
                 session.getMatch().execute();
             }
+            if(session.getMode()==6)
+                break;
         }
     }
     public void run(){
