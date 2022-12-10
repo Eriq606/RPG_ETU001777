@@ -9,6 +9,7 @@ public class Personnage extends BddObj {
     String nom;
     int idCardSetup;
     int idStatistiques;
+    String image;
 
     public int getIdPersonnage() {
         return idPersonnage;
@@ -40,6 +41,14 @@ public class Personnage extends BddObj {
 
     public void setIdStatistiques(int idStatistiques) {
         this.idStatistiques = idStatistiques;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Personnage[] getAllPersonnages() throws Exception{

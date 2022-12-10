@@ -34,6 +34,7 @@ public class Screen extends JFrame {
         addMouseListener(new MouseListener());
         setFocusable(true);
         setSize(800, 600);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
         setResizable(false);
     }

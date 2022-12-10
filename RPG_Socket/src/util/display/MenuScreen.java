@@ -110,7 +110,7 @@ public class MenuScreen extends JPanel {
             JPanel image = new JPanel();
             image.setSize(150, 200);
             JLabel imageperso=new JLabel();
-            ImageIcon icon=new ImageIcon(ImageIO.read(new File("./src/datas/images/Helios.jpg")));
+            ImageIcon icon=new ImageIcon(ImageIO.read(new File("./src/datas/images/"+allPersos[j].getImage())));
             imageperso.setIcon(icon);
             image.add(imageperso);
             JLabel nom = new JLabel(allPersos[j].getNom());
@@ -119,6 +119,11 @@ public class MenuScreen extends JPanel {
                 JPanel card = new JPanel();
                 Box illustrCard = new Box(1);
                 JPanel illustre = new JPanel();
+                illustre.setSize(100, 100);
+                JLabel imageCard=new JLabel();
+                ImageIcon iconCard=new ImageIcon(ImageIO.read(new File("./src/datas/images/"+cardsUsed.get(j).get(i).getImage())));
+                imageCard.setIcon(iconCard);
+                illustre.add(imageCard);
                 JLabel nomCard = new JLabel(cardsUsed.get(j).get(i).getNom());
                 illustrCard.add(illustre);
                 illustrCard.add(nomCard);
@@ -148,10 +153,15 @@ public class MenuScreen extends JPanel {
             choosing.add(choose);
         }
     }
-    void prepareChosen(){
+    void prepareChosen() throws Exception{
         JPanel hasChosen=new JPanel();
         Box illustration=new Box(1);
         JPanel image=new JPanel();
+        image.setSize(150, 200);
+        JLabel imgPerso=new JLabel();
+        ImageIcon icon=new ImageIcon(ImageIO.read(new File("./src/datas/images/"+allPersos[currentCharacter].getImage())));
+        imgPerso.setIcon(icon);
+        image.add(imgPerso);
         JLabel nom=new JLabel(allPersos[currentCharacter].getNom());
         illustration.add(image);
         illustration.add(nom);
@@ -162,7 +172,7 @@ public class MenuScreen extends JPanel {
         prepareChoosing();
         add(choosing);
     }
-    public void prepareChose(){
+    public void prepareChose() throws Exception{
         prepareChosen();
         add(chosen);
     }

@@ -6,9 +6,12 @@ import util.Session;
 import util.listen.ChooseActionListener;
 import util.listen.ChooseCardListener;
 import util.listen.ChooseMagicListener;
+import util.listen.RetourActionListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.Vector;
 
 public class BattleScreen extends JPanel {
@@ -181,16 +184,24 @@ public class BattleScreen extends JPanel {
         combattant2.setHpTotal(stats2.getHp());
     }
 
-    public void prepare(){
+    public void prepare() throws Exception{
         Box full=new Box(1);
         JPanel allPersos=new JPanel();
         Box perso1=new Box(1);
         Box perso2=new Box(1);
 
         JPanel imagePerso1=new JPanel();
+        JLabel imgP1=new JLabel();
+        ImageIcon icon1=new ImageIcon(ImageIO.read(new File("./src/datas/images/"+combattant1.getPersonnage().getImage())));
+        imgP1.setIcon(icon1);
+        imagePerso1.add(imgP1);
         JLabel nomPerso1=new JLabel(combattant1.getPersonnage().getNom());
         labelHP1=new JLabel("HP: "+combattant1.getHpRestants()+"/"+combattant1.getHpTotal());
         JPanel imagePerso2=new JPanel();
+        JLabel imgP2=new JLabel();
+        ImageIcon icon2=new ImageIcon(ImageIO.read(new File("./src/datas/images/"+combattant2.getPersonnage().getImage())));
+        imgP2.setIcon(icon2);
+        imagePerso2.add(imgP2);
         JLabel nomPerso2=new JLabel(combattant2.getPersonnage().getNom());
         labelHP2=new JLabel("HP: "+combattant2.getHpRestants()+"/"+combattant2.getHpTotal());
         perso1.add(imagePerso1);
@@ -221,6 +232,9 @@ public class BattleScreen extends JPanel {
                 magie.addActionListener(new ChooseMagicListener(session, combattant1.getMyAttacks().get(j).get(i).getIdAttack()));
                 menu.add(magie);
             }
+            JButton retour=new JButton("Retour");
+            retour.addActionListener(new RetourActionListener(session));
+            menu.add(retour);
             menu2.add(menu);
         }
         menu1.add(menu2);
@@ -234,6 +248,9 @@ public class BattleScreen extends JPanel {
             myCards.add(carte);
             menu.add(myCards.lastElement());
         }
+        JButton retour=new JButton("Retour");
+        retour.addActionListener(new RetourActionListener(session));
+        menu.add(retour);
         menu1.add(menu);
 
         menuBox.add(menu1);

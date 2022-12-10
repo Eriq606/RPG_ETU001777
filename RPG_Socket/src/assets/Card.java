@@ -8,6 +8,7 @@ public class Card extends BddObj {
     int idCard;
     String nom;
     int idAttackSetup;
+    String image;
 
     public int getIdCard() {
         return idCard;
@@ -32,6 +33,15 @@ public class Card extends BddObj {
     public void setIdAttackSetup(int idAttackSetup) {
         this.idAttackSetup = idAttackSetup;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Card[] getAllCards() throws Exception{
         Vector all=selectAll();
         Card[] allCards=new Card[all.size()];

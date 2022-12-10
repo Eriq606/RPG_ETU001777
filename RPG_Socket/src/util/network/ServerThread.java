@@ -1,6 +1,8 @@
 package util.network;
+import util.Match;
 import util.Session;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -87,7 +89,13 @@ public class ServerThread extends Thread{
             processPreparation();
             session.setMode(5);
             processMatch();
+            fromClient.close();
+            writeToClient.close();
+            client.close();
+            if(session.getNetwork().getEtat()==1)
+                session.getNetwork().getServeur().close();
         }catch(Exception e){
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Alert", JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }

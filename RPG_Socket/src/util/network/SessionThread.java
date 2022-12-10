@@ -2,6 +2,8 @@ package util.network;
 import util.Session;
 import util.listen.ChooseCharacterListener;
 
+import javax.swing.*;
+
 public class SessionThread extends Thread{
     Session session;
     public SessionThread(Session ses){
@@ -46,6 +48,7 @@ public class SessionThread extends Thread{
         try{
             process();
         }catch(Exception e){
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Alert", JOptionPane.WARNING_MESSAGE);
             e.printStackTrace();
         }
     }
