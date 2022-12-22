@@ -21,6 +21,7 @@ public class ReconnectListener implements ActionListener {
             session.start();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(), "Alert", JOptionPane.WARNING_MESSAGE);
+            ex.printStackTrace();
         }
     }
 }
